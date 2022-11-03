@@ -1,12 +1,18 @@
 import TaskInputField from "../Componentes/TaskInputField";
 import TaskItem from "../Componentes/TaskItem";
 import React, { useState } from "react";
-import { Keyboard, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Keyboard,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useColorScheme,
+  Appearance,
+} from "react-native";
 import { useTheme } from "react-native-paper";
 
-export default Home = ({ navigation }) => {
-  const theme = useTheme();
-  
+export default Home = ({ props }) => {
   const [tasks, setTasks] = useState([]);
 
   const addTask = (task) => {
@@ -19,8 +25,14 @@ export default Home = ({ navigation }) => {
     setTasks(tasks.filter((value, index) => index != deleteIndex));
   };
 
+  const { colors } = useTheme();
+
   return (
-    <View style={{backgroundColor: theme.colors.background,  flex: 1,}}>
+    <View
+      style={{ backgroundColor: colors.background,
+        flex: 1,
+      }}
+    >
       <ScrollView style={styles.scrollView}>
         {tasks.map((task, index) => {
           return (

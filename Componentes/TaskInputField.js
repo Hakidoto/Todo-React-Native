@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useTheme } from "react-native-paper";
+
 
 export default TaskInputField = (props) => {
   const [task, setTask] = useState();
@@ -15,11 +17,13 @@ export default TaskInputField = (props) => {
     props.addTask(value);
     setTask(null);
   };
+  
+  const { colors } = useTheme();
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
+      style={[styles.container, {backgroundColor: colors.primary}]}
     >
       <TextInput
         style={styles.inputField}
@@ -40,7 +44,6 @@ export default TaskInputField = (props) => {
 const styles = StyleSheet.create({
   container: {
     borderColor: "#fff",
-    backgroundColor: "#3E3364",
     borderWidth: 1,
     marginHorizontal: 20,
     borderRadius: 12,

@@ -1,14 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useTheme } from "react-native-paper";
 
 export default TaskItem = (props) => {
+  const { colors } = useTheme();
   return (
     <View style={styles.container}>
-      <View style={styles.indexContainer}>
+      <View style={[styles.indexContainer,{ backgroundColor: colors.primary}]}>
         <Text style={styles.index}>{props.index}</Text>
       </View>
-      <View style={styles.taskContainer}>
+      <View style={[styles.taskContainer,{ backgroundColor: colors.primary}]}>
         <Text style={styles.task}>{props.task}</Text>
         <TouchableOpacity onPress={() => props.deleteTask()}>
           <MaterialIcons
@@ -31,7 +33,6 @@ const styles = StyleSheet.create({
 
   },
   indexContainer: {
-    backgroundColor: "#3E3364",
     borderRadius: 12,
     marginRight: 10,
     alignItems: "center",
@@ -44,13 +45,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   taskContainer: {
-    backgroundColor: "#3E3364",
     borderRadius: 12,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
     flex: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     paddingVertical: 5,
     minHeight: 50,
   },
@@ -61,5 +61,6 @@ const styles = StyleSheet.create({
   },
   delete: {
     marginLeft: 10,
+    paRight: 15,
   },
 });
